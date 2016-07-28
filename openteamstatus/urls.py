@@ -16,6 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+import checkins.views
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^checkin/new', checkins.views.CheckinCreateView.as_view(),
+        name='checkin-create'),
+    url(r'^checkin/(?P<pk>\d+)/$', checkins.views.CheckinDetailView.as_view(),
+        name='checkin-detail'),
+
 ]

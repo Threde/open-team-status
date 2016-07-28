@@ -1,0 +1,19 @@
+<h1>{% firstof object.user.full_name object.user %}</h1>
+<h2>{{ object.datetime }}</h2>
+
+<h3>Yesterday:</h3>
+<p>{{ object.yesterday }}</p>
+<p>Goals met:
+{% if object.goals_met %}
+☑
+{% else %}
+☐
+{% endif %}
+
+<h3>Today:</h3>
+<p>{{ object.today }}</p>
+
+{% if object.blockers %}
+<h3>Blockers:</h3>
+<p>{{ object.blockers }}</p>
+{% endif %}

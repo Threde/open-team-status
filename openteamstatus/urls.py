@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url=reverse_lazy(
         'checkin-day', kwargs={'day': 'today'}))),
 
-    url(r'^checkin/new',
+    url(r'^checkin/$',
         checkins.views.CheckinCreateView.as_view(),
         name='checkin-create'),
     url(r'^checkin/(?P<pk>\d+)/$',

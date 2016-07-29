@@ -30,6 +30,14 @@ class CheckinCreateView(CreateView):
     model = Checkin
     fields = ['yesterday', 'goals_met', 'today', 'blockers']
 
+    def get_initial(self):
+        try:
+            checkin = Checkin.objects.get(date=datetime.date.today(),
+                                          user=self.request.user)
+            return {f: getattr(checkin, f) for f in self.fields}
+        except Checkin.DoesNotExist:
+            return {}
+
     def form_valid(self, form):
         """set the user to the current user before saving and update if same day"""
         self.object, created = Checkin.objects.update_or_create(

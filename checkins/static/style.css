@@ -86,3 +86,7 @@ section {
     opacity: .75;
     font-size: .75em;
 }
+
+.brand img {
+    height: 40px;
+}

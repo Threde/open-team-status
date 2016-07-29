@@ -6,8 +6,8 @@
 
 <nav>
   <a href="#" class="brand">
-    {#<img class="logo" src="/web/img/basket.png" />#}
-    <span>OpenTeamStatus</span>
+    {% if team_logo %}<img src="{{ team_logo }}">{% endif %}
+    <span>{{ team_name }}</span>
   </a>
 
   <!-- responsive-->

@@ -55,6 +55,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'core.middeware.OpenTeamStatusSettingsMiddleware',
 ]
 
 ROOT_URLCONF = 'openteamstatus.urls'
@@ -129,3 +131,6 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = '/'
+
+OPEN_TEAM_STATUS_NAME = 'Open Team Status'
+OPEN_TEAM_STATUS_LOGO = None

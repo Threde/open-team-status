@@ -8,14 +8,14 @@
         <h4>{% firstof object.user.first_name object.user %}</h4>
     </div>
     <div class="two-third">
-        <h4>Yesterday:</h4>
+        <h4 {% if object.goals_met %}class="met-goals"{% endif %}>Yesterday:</h4>
         {{ object.yesterday|markdown:"safe" }}
 
-        <h4>Today:</h4>
+        <h4 class="checked-in">Today:</h4>
         {{ object.today|markdown:"safe" }}
 
         {% if object.blockers %}
-        <h4>Blockers:</h4>
+        <h4 class="blocked">Blockers:</h4>
         {{ object.blockers|markdown:"safe" }}
         {% endif %}
     </div>

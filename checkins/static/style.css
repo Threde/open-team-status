@@ -1,0 +1,47 @@
+html, body {
+    height: 100%;
+}
+#wrap {
+    min-height: 100%;
+}
+main {
+    overflow:auto;
+    padding-bottom: 150px;
+}
+footer {
+    position: relative;
+    height: 150px;
+    clear:both;
+    line-height: 150px;
+
+    width: 100%;
+    max-width: 960px;
+    margin: -150px auto 0;
+    font-size: .75em;
+} 
+footer a {
+    color: #333;
+}
+footer .bleep-bloop {
+    float: right;
+}
+footer a img {
+    vertical-align: middle;
+}
+
+section {
+    text-align: left;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 0 0;
+}
+
+.day-nav {
+    float: right;
+}
+
+.avatar {
+    border-radius: 100%;
+    background: lightgrey;
+}

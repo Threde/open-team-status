@@ -1,6 +1,39 @@
-<header>
-    <a href="{% url "checkin-create" %}">Your Status</a>
-    <a href="{% url "checkin-day" day="today" %}">Team Status</a>
-</header>
+{% load staticfiles %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static "picnic.min.css" %}">
+<link rel="stylesheet" href="{% static "style.css" %}">
+
+<nav>
+  <a href="#" class="brand">
+    {#<img class="logo" src="/web/img/basket.png" />#}
+    <span>OpenTeamStatus</span>
+  </a>
+
+  <!-- responsive-->
+  <input id="bmenub" type="checkbox" class="show">
+  <label for="bmenub"  class="burger pseudo button">☰</label>
+
+  <div class="menu">
+    <a href="{% url "checkin-create" %}" class="pseudo button">Your Status</a>
+    <a href="{% url "checkin-day" day="today" %}" class="pseudo button">Team Status</a>
+  </div>
+</nav>
+
+<div id="wrap">
+<main>
 {% block "body" %}
 {% endblock "body" %}
+</main>
+</div>
+
+<footer>
+  <a href="http://threde.com/" target="_blank">
+    Built by
+    <img src="{% static "threde-logo.png" %}">
+  </a>
+
+  <div class="bleep-bloop">
+       Robots lovingly delivered by
+       <a href="http://robohash.org" target="_blank">Robohash.org</a>
+  </div>
+</footer>

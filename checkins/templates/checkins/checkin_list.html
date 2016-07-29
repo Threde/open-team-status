@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% block "body" %}
-<a href="{% url "checkin-day" day=prev %}">Prev</a>
-<a href="{% url "checkin-day" day=next %}">Next</a>
-{% for object in object_list %}
-    {% include "checkins/checkin.html" %}
-{% endfor %}
+<section>
+    <span class="day-nav">
+        <a href="{% url "checkin-day" day=prev %}" class="button">Prev</a>
+        <a href="{% url "checkin-day" day=next %}" class="button">Next</a>
+    </span>
+    <div class="flex two">
+        {% for object in object_list %}
+        {% include "checkins/checkin.html" %}
+        {% endfor %}
+    </div>
+</section>
 {% endblock "body" %}

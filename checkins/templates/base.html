@@ -17,6 +17,11 @@
   <div class="menu">
     <a href="{% url "checkin-create" %}" class="pseudo button">Your Status</a>
     <a href="{% url "checkin-day" day="today" %}" class="pseudo button">Team Status</a>
+    {% if request.user.is_staff %}
+      <a href="{% url "admin:index" %}" class="pseudo button">
+        <i class="fa fa-gear"></i>
+      </a>
+    {% endif %}
     <a href="{% url "logout" %}" class="pseudo button">
       <i class="fa fa-sign-out"></i>
     </a>

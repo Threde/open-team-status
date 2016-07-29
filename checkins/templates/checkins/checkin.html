@@ -1,3 +1,4 @@
+{% load md2 %}
 <div class="checkin">
     <h1>
         <img src="https://robohash.org/{% firstof object.user.email object.user.username %}?gravatar=yes&size=64x64"
@@ -6,7 +7,7 @@
     </h1>
 
     <h3>Yesterday:</h3>
-    <p>{{ object.yesterday }}</p>
+    <p>{{ object.yesterday|markdown:"safe" }}</p>
     <h4>Goals met:
     {% if object.goals_met %}
     ☑
@@ -16,10 +17,10 @@
     </h4>
 
     <h3>Today:</h3>
-    <p>{{ object.today }}</p>
+    <p>{{ object.today|markdown:"safe" }}</p>
 
     {% if object.blockers %}
     <h3>Blockers:</h3>
-    <p>{{ object.blockers }}</p>
+    <p>{{ object.blockers|markdown:"safe" }}</p>
     {% endif %}
 </div>

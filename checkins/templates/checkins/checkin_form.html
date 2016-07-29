@@ -3,6 +3,8 @@
 {% block "body" %}
 <section>
 <form action="" method="post">{% csrf_token %}
+    <span class="help"><a href="https://daringfireball.net/projects/markdown/"
+                          target="_blank">Markdown</a> formatting is supported</span>
     {{ form.as_p }}
     <input type="submit" value="Save" />
 </form>

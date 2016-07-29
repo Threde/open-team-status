@@ -61,3 +61,8 @@ section {
 .blocked {
     color: red;
 }
+
+.help {
+    opacity: .75;
+    font-size: .75em;
+}

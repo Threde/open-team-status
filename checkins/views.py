@@ -4,13 +4,14 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 
 from .models import Checkin
 
-
+@method_decorator(login_required, name='dispatch')
 class CheckinDayView(ListView):
     model = Checkin
 
@@ -41,10 +42,11 @@ class CheckinDayView(ListView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class CheckinDetailView(DetailView):
     model = Checkin
 
-#@login_required
+@method_decorator(login_required, name='dispatch')
 class CheckinCreateView(CreateView):
     model = Checkin
     fields = ['yesterday', 'goals_met', 'today', 'blockers']

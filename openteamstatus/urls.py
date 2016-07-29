@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 
@@ -37,4 +38,7 @@ urlpatterns = [
     url(r'^checkins/(?P<day>\d{4}-\d{2}-\d{2}|today)/$',
         checkins.views.CheckinDayView.as_view(),
         name='checkin-day'),
+
+    url(r'^login/$', login, name='login'),
+    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
 ]

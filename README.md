@@ -1,6 +1,6 @@
 # OpenTeamStatus - an opensource StatusHero clone
 
-Veerry much a work in progress. Still need to do most of the auth work.
+Veerry much a work in progress.
 
 It's a basic CRUD django app.
 

@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static "picnic.min.css" %}">
 <link rel="stylesheet" href="{% static "style.css" %}">
+<link rel="stylesheet" href="{% static "font-awesome-4.6.3/css/font-awesome.min.css" %}">
 
 <nav>
   <a href="#" class="brand">
@@ -16,6 +17,9 @@
   <div class="menu">
     <a href="{% url "checkin-create" %}" class="pseudo button">Your Status</a>
     <a href="{% url "checkin-day" day="today" %}" class="pseudo button">Team Status</a>
+    <a href="{% url "logout" %}" class="pseudo button">
+      <i class="fa fa-sign-out"></i>
+    </a>
   </div>
 </nav>
 

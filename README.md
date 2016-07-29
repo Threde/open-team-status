@@ -12,4 +12,7 @@ pip install -r requirements.txt
 ./manage.py runserver
 ```
 
+Avatars made with gravatar/robohash. Because robohash is awesome.
+
+## Screenshot
 ![screenshot](.screenshot.png)

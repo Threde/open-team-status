@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 from hashids import Hashids
@@ -26,3 +27,6 @@ class MagicToken(models.Model):
 
     def __str__(self):
         return "{}:{}".format(self.user, self.magictoken)
+
+    def get_absolute_url(self):
+        return reverse('magic-login', kwargs={'token': self.magictoken})

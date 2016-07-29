@@ -26,7 +26,7 @@ class CheckinDayView(ListView):
         return Checkin.objects.filter(date=self._get_day())
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(CheckinDayView, self).get_context_data(**kwargs)
         context['date'] = self._get_day()
         context['next'] = (self._get_day() +
                            datetime.timedelta(days=1)).strftime('%Y-%m-%d')

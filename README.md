@@ -12,4 +12,4 @@ pip install -r requirements.txt
 ./manage.py runserver
 ```
 
-![screenshot](./screenshot.png)
+![screenshot](.screenshot.png)

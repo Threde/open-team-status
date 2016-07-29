@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+{% block "body" %}
+<a href="{% url "checkin-day" day=prev %}">Prev</a>
+<a href="{% url "checkin-day" day=next %}">Next</a>
 {% for object in object_list %}
-    {% include "checkins/checkin_detail.html" %}
+    {% include "checkins/checkin.html" %}
 {% endfor %}
+{% endblock "body" %}

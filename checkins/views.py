@@ -13,13 +13,23 @@ from .models import Checkin
 class CheckinDayView(ListView):
     model = Checkin
 
-    def get_queryset(self, **kwargs):
+    def _get_day(self):
         if self.kwargs['day'] == 'today':
-            day = datetime.date.today()
+            return datetime.date.today()
         else:
-            day = datetime.datetime.strptime(self.kwargs['day'],
+            return datetime.datetime.strptime(self.kwargs['day'],
                                              '%Y-%m-%d').date()
-        return Checkin.objects.filter(date=day)
+
+    def get_queryset(self, **kwargs):
+        return Checkin.objects.filter(date=self._get_day())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['next'] = (self._get_day() +
+                           datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+        context['prev'] = (self._get_day() +
+                           datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
+        return context
 
 
 class CheckinDetailView(DetailView):

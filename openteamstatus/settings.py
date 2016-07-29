@@ -154,13 +154,10 @@ OPEN_TEAM_STATUS_REMINDER_DAYS = os.environ.get(
     'OPEN_TEAM_STATUS_REMINDER_DAYS', 'mon,tue,wed,thu,fri')
 
 
-CELERYBEAT_SCHEDULE = {
-    # Executes every Monday morning at 7:30 A.M
-    'add-every-monday-morning': {
-            'task': 'checkins.tasks.send_reminder',
-            'schedule': crontab(hour=OPEN_TEAM_STATUS_REMINDER_HOUR,
-                                minute='*',
-                                day_of_week=OPEN_TEAM_STATUS_REMINDER_DAYS),
-        },
-}
+CELERYBEAT_SCHEDULE = {}
 
+if 'DYNO' in os.environ:
+    CELERYBEAT_SCHEDULE['heroku-keep-alive'] = {
+        'task': 'core.tasks.heroku_keepalive',
+        'schedule': crontab(minute='0,15,30,45'),
+    }

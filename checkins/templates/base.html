@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static "font-awesome-4.6.3/css/font-awesome.min.css" %}">
 
 <nav>
-  <a href="#" class="brand">
+  <a href="{% url "home" %}" class="brand">
     {% if team_logo %}<img src="{{ team_logo }}">{% endif %}
     <span>{{ team_name }}</span>
   </a>

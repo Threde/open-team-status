@@ -26,7 +26,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', RedirectView.as_view(url=reverse_lazy(
-        'checkin-day', kwargs={'day': 'today'}))),
+        'checkin-day', kwargs={'day': 'today'})),
+        name='home'),
 
     url(r'^checkin/$',
         checkins.views.CheckinCreateView.as_view(),

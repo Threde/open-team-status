@@ -11,6 +11,7 @@ hashids==1.1.0
 kombu==3.0.35
 markdown2==2.3.1
 meld3==1.0.2
+psycopg2==2.6.2
 pytz==2016.6.1
 supervisor==3.3.0
 whitenoise==3.2

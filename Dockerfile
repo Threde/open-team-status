@@ -1,5 +1,7 @@
 FROM python:3
 
+RUN pip install dumb-init
+
 RUN mkdir /opt/openteamstatus
 WORKDIR /opt/openteamstatus
 
@@ -16,6 +18,7 @@ RUN ./manage.py collectstatic --no-input
 ENV PYTHONPATH=/opt/openteamstatus/
 ENV DEBUG=false
 
+ENTRYPOINT ["dumb-init", "--"]
 CMD ["gunicorn", "openteamstatus.wsgi:application", "--bind=0:80", \
      "--access-logfile=-", "--error-logfile=-"]
 

@@ -10,11 +10,16 @@ from django.views.generic.list import ListView
 from .models import Checkin
 
 
-class CheckinTodayView(ListView):
+class CheckinDayView(ListView):
     model = Checkin
 
-    def get_query_set(self, request):
-        return Checkin.objects.filter(date=datetime.date.today())
+    def get_queryset(self, **kwargs):
+        if self.kwargs['day'] == 'today':
+            day = datetime.date.today()
+        else:
+            day = datetime.datetime.strptime(self.kwargs['day'],
+                                             '%Y-%m-%d').date()
+        return Checkin.objects.filter(date=day)
 
 
 class CheckinDetailView(DetailView):
@@ -31,4 +36,5 @@ class CheckinCreateView(CreateView):
             user=self.request.user, date=datetime.date.today(),
             defaults=form.cleaned_data)
 
-        return HttpResponseRedirect(reverse('checkin-today'))
+        return HttpResponseRedirect(reverse(
+            'checkin-day', kwargs={'day': 'today'}))

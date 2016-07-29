@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 
 import checkins.views
@@ -23,7 +24,8 @@ import checkins.views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^$', RedirectView.as_view(pattern_name='checkin-today')),
+    url(r'^$', RedirectView.as_view(url=reverse_lazy(
+        'checkin-day', kwargs={'day': 'today'}))),
 
     url(r'^checkin/new',
         checkins.views.CheckinCreateView.as_view(),
@@ -32,7 +34,7 @@ urlpatterns = [
         checkins.views.CheckinDetailView.as_view(),
         name='checkin-detail'),
 
-    url(r'^checkins/today/$',
-        checkins.views.CheckinTodayView.as_view(),
-        name='checkin-today'),
+    url(r'^checkins/(?P<day>\d{4}-\d{2}-\d{2}|today)/$',
+        checkins.views.CheckinDayView.as_view(),
+        name='checkin-day'),
 ]

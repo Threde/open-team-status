@@ -3,4 +3,7 @@ from django.contrib import admin
 from .models import MagicToken
 
 
-admin.site.register(MagicToken)
+@admin.register(MagicToken)
+class MagicTokendmin(admin.ModelAdmin):
+        list_display = ('user', 'ttl', 'magictoken')
+        readonly_fields = ('magictoken',)

@@ -44,9 +44,29 @@ section {
     float: right;
 }
 
+.person {
+    text-align: center;
+    position: relative;
+}
 .avatar {
     border-radius: 100%;
     background: lightgrey;
+}
+.person i.fa {
+    position: absolute;
+    top: 0;
+}
+.person i.fa.met-goals {
+    left: 33%;
+}
+.person i.fa.blocked {
+    left: 65%;
+}
+.checkin h4 {
+    padding: 0;
+}
+.checkin-list {
+    padding-top: 20px;
 }
 
 .count {

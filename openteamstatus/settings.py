@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 """
 Django settings for openteamstatus project.
 
@@ -13,6 +14,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 from django.core.urlresolvers import reverse_lazy
+from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,8 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'django_markdown2',
+    'djcelery',
+    'kombu.transport.django',
 
     'core',
     'checkins',
@@ -117,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Eastern'
 
 USE_I18N = True
 
@@ -135,6 +140,27 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = '/'
 
+SITE_ID = 1
+
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+BROKER_URL = 'django://'
+
 OPEN_TEAM_STATUS_NAME = os.environ.get('OPEN_TEAM_STATUS_NAME',
                                        'Open Team Status')
 OPEN_TEAM_STATUS_LOGO = os.environ.get('OPEN_TEAM_STATUS_LOGO')
+OPEN_TEAM_STATUS_REMINDER_HOUR = os.environ.get(
+    'OPEN_TEAM_STATUS_REMINDER_HOUR', 9)
+OPEN_TEAM_STATUS_REMINDER_DAYS = os.environ.get(
+    'OPEN_TEAM_STATUS_REMINDER_DAYS', 'mon,tue,wed,thu,fri')
+
+
+CELERYBEAT_SCHEDULE = {
+    # Executes every Monday morning at 7:30 A.M
+    'add-every-monday-morning': {
+            'task': 'checkins.tasks.send_reminder',
+            'schedule': crontab(hour=OPEN_TEAM_STATUS_REMINDER_HOUR,
+                                minute='*',
+                                day_of_week=OPEN_TEAM_STATUS_REMINDER_DAYS),
+        },
+}
+

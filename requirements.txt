@@ -1,7 +1,16 @@
+amqp==1.4.9
+anyjson==0.3.3
+billiard==3.3.0.23
+celery==3.1.23
 dj-database-url==0.4.1
 Django==1.9.8
+django-celery==3.1.17
 django-markdown2==0.3.0
 gunicorn==19.6.0
 hashids==1.1.0
+kombu==3.0.35
 markdown2==2.3.1
+meld3==1.0.2
+pytz==2016.6.1
+supervisor==3.3.0
 whitenoise==3.2

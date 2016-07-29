@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:2.7
 
 RUN pip install dumb-init
 
@@ -13,13 +13,14 @@ ADD core /opt/openteamstatus/core
 ADD checkins /opt/openteamstatus/checkins
 ADD magiclink /opt/openteamstatus/magiclink
 ADD manage.py /opt/openteamstatus/manage.py
+ADD supervisord.conf /opt/openteamstatus/supervisord.conf
 
 RUN ./manage.py collectstatic --no-input
 
 ENV PYTHONPATH=/opt/openteamstatus/
 ENV DEBUG=false
+ENV C_FORCE_ROOT=true
 
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["gunicorn", "openteamstatus.wsgi:application", "--bind=0:80", \
-     "--access-logfile=-", "--error-logfile=-"]
+CMD ["supervisord", "-c", "supervisord.conf"]
 

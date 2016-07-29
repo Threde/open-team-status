@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'core',
     'checkins',
+    'magiclink',
 ]
 
 MIDDLEWARE_CLASSES = [

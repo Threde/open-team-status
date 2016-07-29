@@ -20,6 +20,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 
 import checkins.views
+import magiclink.views
 
 
 urlpatterns = [
@@ -42,4 +43,8 @@ urlpatterns = [
 
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
+
+    url(r'^magic/(?P<token>.*)/$',
+        magiclink.views.MagicTokenLogin.as_view(),
+        name='magic-login'),
 ]

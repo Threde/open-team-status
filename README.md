@@ -1,8 +1,7 @@
 # OpenTeamStatus - an opensource StatusHero clone
-
-Veerry much a work in progress.
-
-It's a basic CRUD django app.
+OpenTeamStatus is built by [Threde](http://threde.com) for small teams like our
+own. It was built out of a desire for a free and open source (thus guaranteed to
+be free forever) clone of [StatusHero](http://statushero.com).
 
 ```
 mkvirtualenv --python=/usr/bin/python3 status
@@ -16,6 +15,12 @@ Avatars made with gravatar/robohash. Because robohash is awesome.
 
 ## Screenshot
 ![screenshot](.screenshot.png)
+
+## Super-easy FREE deploy! :tada: :100:
+OpenTeamStatus comes with a supervisor config for running gunicorn & celery as
+from a single process. This is launched by the `Procfile` and the Celery worker
+*automatically* detects that it's running on a heroku dyno and makes an HTTP
+request to itself every 15 minutes to keep the dyno alive forever.
 
 ## Docker!
 There's a basic Dockerfile, here's a basic example of running it..

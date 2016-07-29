@@ -20,8 +20,8 @@ Avatars made with gravatar/robohash. Because robohash is awesome.
 ## Docker!
 There's a basic Dockerfile, here's a basic example of running it..
 ```
-docker build -t openteamstatus .
-docker run -it --rm -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z openteamstatus ./manage.py migrate
-docker run -it --rm -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z openteamstatus ./manage.py createsuperuser
-docker run -it --rm -e ALLOWED_HOSTS=localhost -p 8000:80 -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z openteamstatus
+docker pull registry.gitlab.com/threde/open-team-status
+docker run -it --rm -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z registry.gitlab.com/threde/open-team-status ./manage.py migrate
+docker run -it --rm -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z registry.gitlab.com/threde/open-team-status ./manage.py createsuperuser
+docker run -it --rm -e ALLOWED_HOSTS=localhost -p 8000:80 -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z registry.gitlab.com/threde/open-team-status
 ```

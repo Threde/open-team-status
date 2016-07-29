@@ -11,6 +11,7 @@ RUN pip install -r requirements.txt
 ADD openteamstatus /opt/openteamstatus/openteamstatus
 ADD core /opt/openteamstatus/core
 ADD checkins /opt/openteamstatus/checkins
+ADD magiclink /opt/openteamstatus/magiclink
 ADD manage.py /opt/openteamstatus/manage.py
 
 RUN ./manage.py collectstatic --no-input

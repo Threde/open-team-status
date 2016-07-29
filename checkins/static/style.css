@@ -37,6 +37,9 @@ section {
     padding: 80px 0 0;
 }
 
+.day {
+    float: left;
+}
 .day-nav {
     float: right;
 }
@@ -44,4 +47,17 @@ section {
 .avatar {
     border-radius: 100%;
     background: lightgrey;
+}
+
+.count {
+    text-align: center;
+}
+.checked-in {
+    color: blue;
+}
+.met-goals {
+    color: green;
+}
+.blocked {
+    color: red;
 }

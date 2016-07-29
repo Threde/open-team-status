@@ -1,10 +1,30 @@
 {% extends "base.html" %}
 {% block "body" %}
 <section>
+    <h3 class="day">
+        {{ date }}
+    </h3>
     <span class="day-nav">
         <a href="{% url "checkin-day" day=prev %}" class="button">Prev</a>
         <a href="{% url "checkin-day" day=next %}" class="button">Next</a>
     </span>
+    <div class="flex three">
+        <h1 class="count checked-in">
+            {{ checked_in}} / {{ num_users }}
+            <br>
+            Checked In
+        </h1>
+        <h1 class="count met-goals">
+            {{ goals_met}} / {{ num_users }}
+            <br>
+            Met Goals
+        </h1>
+        <h1 class="count blocked">
+            {{ blocked }} / {{ num_users }}
+            <br>
+            Are Blocked
+        </h1>
+    </div>
     <div class="flex two">
         {% for object in object_list %}
         {% include "checkins/checkin.html" %}

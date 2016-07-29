@@ -11,3 +11,5 @@ pip install -r requirements.txt
 ./manage.py createsuperuser
 ./manage.py runserver
 ```
+
+![screenshot](./screenshot.png)

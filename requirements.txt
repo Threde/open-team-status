@@ -1,3 +1,4 @@
+dj-database-url==0.4.1
 Django==1.9.8
 django-markdown2==0.3.0
 gunicorn==19.6.0

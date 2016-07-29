@@ -21,9 +21,13 @@ Avatars made with gravatar/robohash. Because robohash is awesome.
 There's a basic Dockerfile, here's a basic example of running it..
 ```
 docker build -t openteamstatus .
-docker run -it --rm -p 8000:80 -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z openteamstatus \
-    ./manage.py migrate
-docker run -it --rm -p 8000:80 -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z openteamstatus \
-    ./manage.py createsuperuser
-docker run -it --rm -p 8000:80 -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z openteamstatus
+docker run -it --rm \
+    -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z \
+    openteamstatus ./manage.py migrate
+docker run -it --rm \
+    -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z \
+    openteamstatus ./manage.py createsuperuser
+docker run -it --rm -e ALLOWED_HOSTS=localhost -p 8000:80 \
+    -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z \
+    openteamstatus
 ```

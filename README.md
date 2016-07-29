@@ -22,6 +22,18 @@ from a single process. This is launched by the `Procfile` and the Celery worker
 *automatically* detects that it's running on a heroku dyno and makes an HTTP
 request to itself every 15 minutes to keep the dyno alive forever.
 
+## Configuration
+Configuration is done through environment variables. The are:
+
+ * `SECRET_KEY` - a Django secret key
+ * `DEBUG`
+ * `ALLOWED_HOSTS` - `:` delimited
+ * `DATABASE_URL`
+ * `OPEN_TEAM_STATUS_NAME` - name to display in nav
+ * `OPEN_TEAM_STATUS_LOGO` - a logo to display in the nav
+
+
+
 ## Docker!
 There's a basic Dockerfile, here's a basic example of running it..
 ```

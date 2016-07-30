@@ -45,9 +45,14 @@ section {
 
 .person {
     text-align: center;
+}
+.avatar-wrap {
+    width: 64px;
+    margin: 0 auto;
     position: relative;
 }
 .avatar {
+    width: 64px;
     border-radius: 100%;
     background: lightgrey;
 }
@@ -56,10 +61,10 @@ section {
     top: 0;
 }
 .person i.fa.met-goals {
-    left: 33%;
+    left: 0;
 }
 .person i.fa.blocked {
-    left: 65%;
+    right: 0;
 }
 .checkin h4 {
     padding: 0;

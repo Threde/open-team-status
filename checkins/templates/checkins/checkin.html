@@ -1,10 +1,12 @@
 {% load md2 %}
 <div class="checkin flex three {% if not object.id %}missing{% endif %}">
     <div class="person">
+        <div class="avatar-wrap">
         <img src="https://robohash.org/{% firstof object.user.email object.user.username %}?gravatar=yes&size=64x64"
             class="avatar">
         <i {% if object.blockers %}class="blocked fa fa-circle"{% endif %}></i>
         <i {% if object.goals_met %}class="met-goals fa fa-check-circle"{% endif %}></i>
+        </div>
         <h4>{% firstof object.user.first_name object.user %}</h4>
     </div>
     <div class="two-third">

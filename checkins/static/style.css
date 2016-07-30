@@ -95,3 +95,9 @@ section {
     filter: saturate(0%) opacity(50%);
     -webkit-filter: saturate(0%) opacity(50%);
 }
+
+@media(max-width: 500px) {
+    h1.count {
+        font-size: 20px;
+    }
+}

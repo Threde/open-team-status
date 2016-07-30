@@ -1,10 +1,9 @@
-import datetime
-
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -23,9 +22,9 @@ class CheckinDayView(ListView):
 
     def _get_day(self):
         if self.kwargs['day'] == 'today':
-            return datetime.date.today()
+            return timezone.now().date()
         else:
-            return datetime.datetime.strptime(self.kwargs['day'],
+            return timezone.datetime.strptime(self.kwargs['day'],
                                              '%Y-%m-%d').date()
 
     def get_queryset(self, **kwargs):
@@ -35,11 +34,12 @@ class CheckinDayView(ListView):
         context = super(CheckinDayView, self).get_context_data(**kwargs)
         context['date'] = self._get_day()
         context['next'] = (self._get_day() +
-                           datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+                           timezone.timedelta(days=1)).strftime('%Y-%m-%d')
         context['prev'] = (self._get_day() +
-                           datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
+                           timezone.timedelta(days=-1)).strftime('%Y-%m-%d')
 
-        users = get_user_model().objects.all()
+        users = get_user_model().objects.filter(
+            date_joined__lte=self._get_day())
         context['num_users'] = users.count()
         users_missing_checkins = users.exclude(
             id__in=context['object_list'].values_list('user_id', flat=True))
@@ -64,7 +64,7 @@ class CheckinCreateView(CreateView):
 
     def get_initial(self):
         try:
-            checkin = Checkin.objects.get(date=datetime.date.today(),
+            checkin = Checkin.objects.get(date=timezone.now().date(),
                                           user=self.request.user)
             return {f: getattr(checkin, f) for f in self.fields}
         except Checkin.DoesNotExist:
@@ -73,7 +73,7 @@ class CheckinCreateView(CreateView):
     def form_valid(self, form):
         """set the user to the current user before saving and update if same day"""
         self.object, created = Checkin.objects.update_or_create(
-            user=self.request.user, date=datetime.date.today(),
+            user=self.request.user, date=timezone.now().date(),
             defaults=form.cleaned_data)
 
         return HttpResponseRedirect(reverse(

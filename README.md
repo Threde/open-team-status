@@ -56,6 +56,8 @@ possible settings are:
    reminders with, default: `checkins.tasks.email_reminder`
  * `OPEN_TEAM_STATUS_PUBLIC` - if true, the checkin summary page visible with
    out logging in
+ * `OPEN_TEAM_STATUS_REMINDER_SLACK_WEBHOOK` - slack webhook to use when using
+   slack for reminders
 
 
 ## Pluggable reminder backend!
@@ -66,8 +68,8 @@ variables.
 The backend is configured via the OPEN_TEAM_STATUS_REMINDER_TASK environment
 variable. The available backends are:
  * Email - `checkins.tasks.email_reminder`
-Coming soon:
- * Slack - `checkins.tasks.slack_reminder`
+ * Slack - `checkins.tasks.slack_reminder` - **NOTE**: slack usernames must
+   must match OpenTeamStatus usernames.
 
 
 ## Docker!

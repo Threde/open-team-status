@@ -171,6 +171,7 @@ env_setting('OPEN_TEAM_STATUS_REMINDER_BODY',
             default='Please checkin today: {url}')
 env_setting('OPEN_TEAM_STATUS_REMINDER_TASK',
             default='checkins.tasks.email_reminder'),
+env_setting('OPEN_TEAM_STATUS_REMINDER_SLACK_WEBHOOK')
 env_setting('OPEN_TEAM_STATUS_PUBLIC', 'false', lambda x: x.lower() == 'true')
 
 

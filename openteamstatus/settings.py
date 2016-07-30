@@ -30,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env_setting('SECRET_KEY', '+iwwd*@_y@2=0#6_&4e7)#hvdc)7mw)%g(xbk62zg-b%h0$dc6')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-env_setting('DEBUG', default=True, type=bool)
+env_setting('DEBUG', default='true', type=lambda x: x.lower() == 'true')
 
 env_setting('ALLOWED_HOSTS', default='', type=lambda x: x.split(':'))
 

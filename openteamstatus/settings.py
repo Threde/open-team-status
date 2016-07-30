@@ -169,6 +169,7 @@ env_setting('OPEN_TEAM_STATUS_REMINDER_SUBJECT',
             default='Status Checkin Reminder')
 env_setting('OPEN_TEAM_STATUS_REMINDER_BODY',
             default='Please checkin today: {url}')
+env_setting('OPEN_TEAM_STATUS_PUBLIC', 'false', lambda x: x.lower() == 'true')
 
 
 CELERYBEAT_SCHEDULE = {

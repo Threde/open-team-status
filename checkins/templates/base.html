@@ -15,6 +15,7 @@
   <label for="bmenub"  class="burger pseudo button">☰</label>
 
   <div class="menu">
+  {% if request.user.id %}
     <a href="{% url "checkin-create" %}" class="pseudo button">Your Status</a>
     <a href="{% url "checkin-day" day="today" %}" class="pseudo button">Team Status</a>
     {% if request.user.is_staff %}
@@ -25,6 +26,11 @@
     <a href="{% url "logout" %}" class="pseudo button">
       <i class="fa fa-sign-out"></i>
     </a>
+  {% else %}
+    <a href="{% url "login" %}" class="pseudo button">
+      <i class="fa fa-sign-in"></i>
+    </a>
+  {% endif %}
   </div>
 </nav>
 

@@ -1,5 +1,6 @@
 import datetime
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -11,7 +12,12 @@ from django.views.generic.list import ListView
 
 from .models import Checkin
 
-@method_decorator(login_required, name='dispatch')
+if settings.OPEN_TEAM_STATUS_PUBLIC:
+    configurable_login_required = []
+else:
+    configurable_login_required = [login_required]
+
+@method_decorator(configurable_login_required, name='dispatch')
 class CheckinDayView(ListView):
     model = Checkin
 

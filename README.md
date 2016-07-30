@@ -52,6 +52,8 @@ possible settings are:
     default: mon,tue,wed,thu,fri
  * `OPEN_TEAM_STATUS_REMINDER_SUBJECT`
  * `OPEN_TEAM_STATUS_REMINDER_BODY`
+ * `OPEN_TEAM_STATUS_PUBLIC` - if true, the checkin summary page visible with
+   out logging in
 
 
 

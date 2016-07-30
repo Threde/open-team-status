@@ -144,6 +144,19 @@ LOGIN_REDIRECT_URL = '/'
 
 SITE_ID = 1
 
+env_setting('EMAIL_HOST')
+env_setting('EMAIL_PORT')
+env_setting('EMAIL_HOST_PASSWORD')
+env_setting('EMAIL_HOST_USER')
+env_setting('EMAIL_SUBJECT_PREFIX', default='[OpenTeamStatus]')
+env_setting('EMAIL_USE_TLS', default='true',
+            type=lambda x: x.lower() == 'true')
+env_setting('EMAIL_USE_SSL', default='true',
+            type=lambda x: x.lower() == 'true')
+env_setting('EMAIL_SSL_CERTFILE')
+env_setting('EMAIL_SSL_KEYFILE')
+env_setting('EMAIL_SSL_TIMEOUT')
+
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 BROKER_URL = 'django://'
 
@@ -153,7 +166,16 @@ env_setting('OPEN_TEAM_STATUS_REMINDER_HOUR', default=9, type=int)
 env_setting('OPEN_TEAM_STATUS_REMINDER_DAYS', default='mon,tue,wed,thu,fri')
 
 
-CELERYBEAT_SCHEDULE = {}
+CELERYBEAT_SCHEDULE = {
+    'send-reminder': {
+        'task': 'checklist.tasks.send_reminder',
+        'schedule': crontab(
+            minute=0,
+            day_of_week=OPEN_TEAM_STATUS_REMINDER_DAYS,
+            hour=OPEN_TEAM_STATUS_REMINDER_HOUR,
+        ),
+    },
+}
 
 if 'DYNO' in os.environ:
     CELERYBEAT_SCHEDULE['heroku-keep-alive'] = {

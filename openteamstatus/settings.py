@@ -149,9 +149,9 @@ env_setting('EMAIL_PORT')
 env_setting('EMAIL_HOST_PASSWORD')
 env_setting('EMAIL_HOST_USER')
 env_setting('EMAIL_SUBJECT_PREFIX', default='[OpenTeamStatus]')
-env_setting('EMAIL_USE_TLS', default='true',
+env_setting('EMAIL_USE_TLS', default='false',
             type=lambda x: x.lower() == 'true')
-env_setting('EMAIL_USE_SSL', default='true',
+env_setting('EMAIL_USE_SSL', default='false',
             type=lambda x: x.lower() == 'true')
 env_setting('EMAIL_SSL_CERTFILE')
 env_setting('EMAIL_SSL_KEYFILE')

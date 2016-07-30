@@ -5,8 +5,14 @@
         {{ date }}
     </h3>
     <span class="day-nav">
-        <a href="{% url "checkin-day" day=prev %}" class="button">Prev</a>
-        <a href="{% url "checkin-day" day=next %}" class="button">Next</a>
+        <a href="{% url "checkin-day" day=prev %}" class="button">
+            <i class="fa fa-angle-left"></i> Prev</a>
+        {% if date == today %}
+        <button disabled>Next <i class="fa fa-angle-right"></i></button>
+        {% else %}
+        <a href="{% url "checkin-day" day=next %}" class="button">Next
+            <i class="fa fa-angle-right"></i></a>
+        {% endif %}
     </span>
     <hr style="clear:both">
     <div class="flex three">

@@ -35,6 +35,7 @@ class CheckinDayView(ListView):
         context['date'] = self._get_day()
         context['next'] = (self._get_day() +
                            timezone.timedelta(days=1)).strftime('%Y-%m-%d')
+        context['today'] = timezone.now().date()
         context['prev'] = (self._get_day() +
                            timezone.timedelta(days=-1)).strftime('%Y-%m-%d')
 

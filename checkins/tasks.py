@@ -19,16 +19,13 @@ def make_magic_checkin_link(user):
 @shared_task
 def slack_reminder():
     for user in get_user_model().objects.all():
-        link = make_magic_checkin_link(user)
+        payload = {
+            'channel': '@' + user.username,
+            'text': settings.OPEN_TEAM_STATUS_REMINDER_BODY.format(
+                url=make_magic_checkin_link(user)),
+        }
         requests.post(settings.OPEN_TEAM_STATUS_REMINDER_SLACK_WEBHOOK,
-                      json={
-                          'channel': '@' + user.username,
-                          'text': '*{}*\n\n{}'.format(
-                              settings.OPEN_TEAM_STATUS_REMINDER_SUBJECT,
-                              settings.OPEN_TEAM_STATUS_REMINDER_BODY.format(
-                                  url=link),
-                          ),
-                      })
+                      json=payload)
 
 @shared_task
 def email_reminder():

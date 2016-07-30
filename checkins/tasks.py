@@ -10,11 +10,11 @@ from magiclink.models import MagicToken
 import requests
 
 
-def make_magic_checkin_link(user):
-	link = MagicToken(user=user)
-	link.save()
-	return '{}?next={}'.format(link, reverse('checkin-create')
 
+def make_magic_checkin_link(user):
+    link = MagicToken(user=user)
+    link.save()
+    return '{}?next={}'.format(link, reverse('checkin-create'))
 
 @shared_task
 def slack_reminder():

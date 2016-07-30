@@ -16,7 +16,7 @@ Avatars made with gravatar/robohash. Because robohash is awesome.
 ## Screenshot
 ![screenshot](.screenshot.png)
 
-## Super-easy FREE deploy! :tada: :100:
+## Super-easy FREE Heroku deploy! :tada: :100:
 OpenTeamStatus comes with a supervisor config for running gunicorn & celery as
 from a single process. This is launched by the `Procfile` and the Celery worker
 *automatically* detects that it's running on a heroku dyno and makes an HTTP
@@ -58,7 +58,8 @@ possible settings are:
 
 
 ## Docker!
-There's a basic Dockerfile, here's a basic example of running it..
+This project's repo automatically builds a docker image and stores it in a
+registry(isn't gitlab neat!)
 ```
 docker pull registry.gitlab.com/threde/open-team-status
 docker run -it --rm -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z registry.gitlab.com/threde/open-team-status ./manage.py migrate

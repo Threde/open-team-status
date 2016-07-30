@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
@@ -26,7 +27,8 @@ class MagicToken(models.Model):
         return expires_at > timezone.now()
 
     def __str__(self):
-        return "{}:{}".format(self.user, self.magictoken)
+        return ('https://' + Site.objects.get_current().domain +
+                self.get_absolute_url())
 
     def get_absolute_url(self):
         return reverse('magic-login', kwargs={'token': self.magictoken})

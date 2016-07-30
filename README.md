@@ -48,6 +48,8 @@ possible settings are:
  * `OPEN_TEAM_STATUS_LOGO` - a logo to display in the nav
  * `OPEN_TEAM_STATUS_REMINDER_HOUR` - hour of the day to send reminders,
     default: 9
+ * `OPEN_TEAM_STATUS_REMINDER_MINUTE` - minute of the hour to send reminders,
+    default: 0
  * `OPEN_TEAM_STATUS_REMINDER_DAYS` - days of the week to send reminders,
     default: mon,tue,wed,thu,fri
  * `OPEN_TEAM_STATUS_REMINDER_SUBJECT`

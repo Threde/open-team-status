@@ -164,6 +164,7 @@ BROKER_URL = 'django://'
 env_setting('OPEN_TEAM_STATUS_NAME', default='Open Team Status')
 env_setting('OPEN_TEAM_STATUS_LOGO')
 env_setting('OPEN_TEAM_STATUS_REMINDER_HOUR', default=9, type=int)
+env_setting('OPEN_TEAM_STATUS_REMINDER_MINUTE', default=0, type=int)
 env_setting('OPEN_TEAM_STATUS_REMINDER_DAYS', default='mon,tue,wed,thu,fri')
 env_setting('OPEN_TEAM_STATUS_REMINDER_SUBJECT',
             default='Status Checkin Reminder')
@@ -179,7 +180,7 @@ CELERYBEAT_SCHEDULE = {
     'send-reminder': {
         'task': OPEN_TEAM_STATUS_REMINDER_TASK,
         'schedule': crontab(
-            minute=0,
+            minute=OPEN_TEAM_STATUS_REMINDER_MINUTE,
             day_of_week=OPEN_TEAM_STATUS_REMINDER_DAYS,
             hour=OPEN_TEAM_STATUS_REMINDER_HOUR,
         ),

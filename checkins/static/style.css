@@ -109,3 +109,7 @@ section {
 .flex, a, button, .button, [type=submit], input,textarea, .select, select, nav {
     transition: none;
 }
+
+textarea[disabled] {
+    color: grey;
+}

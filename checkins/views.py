@@ -58,6 +58,15 @@ class CheckinCreateView(CreateView):
     model = Checkin
     fields = ['yesterday', 'goals_met', 'today', 'blockers']
 
+    def get_context_data(self, **kwargs):
+        context = super(CheckinCreateView, self).get_context_data(**kwargs)
+        try:
+            context['yesterday'] = Checkin.objects.yesterday().get(
+                user=self.request.user).today
+        except Checkin.DoesNotExist:
+            pass
+        return context
+
     def get_initial(self):
         try:
             checkin = Checkin.objects.get(date=timezone.now().date(),

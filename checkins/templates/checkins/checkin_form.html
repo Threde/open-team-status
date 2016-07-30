@@ -2,8 +2,8 @@
 
 {% block "body" %}
 <section>
-<form action="" method="post">{% csrf_token %}
-    <span class="help"><a href="https://daringfireball.net/projects/markdown/"
+<form action="" method="post" class="flex two-800 one">{% csrf_token %}
+    <span class="full help"><a href="https://daringfireball.net/projects/markdown/"
                           target="_blank">Markdown</a> formatting is supported</span>
     {% for field in form %}
         <p>
@@ -17,6 +17,12 @@
             {{ field }}
         {% endif %}
         {{ form.subject }}
+        </p>
+        <p>
+            {% if field.name == 'yesterday' %}
+                <label>Yesterday's goals</label>
+                <textarea rows="10" disabled>{{ yesterday }}</textarea>
+            {% endif %}
         </p>
     {% endfor %}
     <input type="submit" value="Save" />

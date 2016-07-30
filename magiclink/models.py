@@ -12,8 +12,8 @@ hashids = Hashids(salt=settings.SECRET_KEY)
 
 
 class MagicToken(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     ttl = models.IntegerField(default=24, help_text='Time-to-live in hours')
 

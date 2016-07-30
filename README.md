@@ -32,8 +32,25 @@ possible settings are:
  * `DEBUG`
  * `ALLOWED_HOSTS` - `:` delimited
  * `DATABASE_URL`
+ * `EMAIL_HOST'
+ * `EMAIL_PORT'
+ * `EMAIL_HOST_PASSWORD'
+ * `EMAIL_HOST_USER'
+ * `EMAIL_SUBJECT_PREFIX'
+ * `EMAIL_USE_TLS'
+ * `EMAIL_USE_SSL'
+ * `EMAIL_SSL_CERTFILE'
+ * `EMAIL_SSL_KEYFILE'
+ * `EMAIL_TIMEOUT'
+ * `DEFAULT_FROM_EMAIL`
  * `OPEN_TEAM_STATUS_NAME` - name to display in nav
  * `OPEN_TEAM_STATUS_LOGO` - a logo to display in the nav
+ * `OPEN_TEAM_STATUS_REMINDER_HOUR` - hour of the day to send reminders,
+    default: 9
+ * `OPEN_TEAM_STATUS_REMINDER_DAYS` - days of the week to send reminders,
+    default: mon,tue,wed,thu,fri
+ * `OPEN_TEAM_STATUS_REMINDER_SUBJECT`
+ * `OPEN_TEAM_STATUS_REMINDER_BODY`
 
 
 

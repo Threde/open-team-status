@@ -155,7 +155,8 @@ env_setting('EMAIL_USE_SSL', default='false',
             type=lambda x: x.lower() == 'true')
 env_setting('EMAIL_SSL_CERTFILE')
 env_setting('EMAIL_SSL_KEYFILE')
-env_setting('EMAIL_SSL_TIMEOUT')
+env_setting('EMAIL_TIMEOUT')
+env_setting('DEFAULT_FROM_EMAIL', default='openteamstatus@localhost')
 
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 BROKER_URL = 'django://'
@@ -164,6 +165,10 @@ env_setting('OPEN_TEAM_STATUS_NAME', default='Open Team Status')
 env_setting('OPEN_TEAM_STATUS_LOGO')
 env_setting('OPEN_TEAM_STATUS_REMINDER_HOUR', default=9, type=int)
 env_setting('OPEN_TEAM_STATUS_REMINDER_DAYS', default='mon,tue,wed,thu,fri')
+env_setting('OPEN_TEAM_STATUS_REMINDER_SUBJECT',
+            default='Status Checkin Reminder')
+env_setting('OPEN_TEAM_STATUS_REMINDER_BODY',
+            default='Please checkin today: {url}')
 
 
 CELERYBEAT_SCHEDULE = {

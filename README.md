@@ -23,7 +23,10 @@ from a single process. This is launched by the `Procfile` and the Celery worker
 request to itself every 15 minutes to keep the dyno alive forever.
 
 ## Configuration
-Configuration is done through environment variables. The are:
+Configuration is done through environment variables. Variables not prefixed
+with `OPEN_TEAM_STATUS_` are
+[Django settings](https://docs.djangoproject.com/en/1.9/ref/settings/). The
+possible settings are:
 
  * `SECRET_KEY` - a Django secret key
  * `DEBUG`

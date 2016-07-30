@@ -32,7 +32,7 @@ possible settings are:
  * `DEBUG`
  * `ALLOWED_HOSTS` - `:` delimited
  * `DATABASE_URL`
- * `TIME_ZONE`
+ * `TIME_ZONE` - note, you'll also want to set `TZ` if deploying to Heroku
  * `EMAIL_HOST`
  * `EMAIL_PORT`
  * `EMAIL_HOST_PASSWORD`

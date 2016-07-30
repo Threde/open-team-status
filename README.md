@@ -32,6 +32,7 @@ possible settings are:
  * `DEBUG`
  * `ALLOWED_HOSTS` - `:` delimited
  * `DATABASE_URL`
+ * `TIME_ZONE`
  * `EMAIL_HOST'
  * `EMAIL_PORT'
  * `EMAIL_HOST_PASSWORD'

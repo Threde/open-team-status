@@ -101,3 +101,7 @@ section {
         font-size: 20px;
     }
 }
+/* override picnics over-animation */
+.flex, a, button, .button, [type=submit], input,textarea, .select, select, nav {
+    transition: none;
+}

@@ -5,7 +5,20 @@
 <form action="" method="post">{% csrf_token %}
     <span class="help"><a href="https://daringfireball.net/projects/markdown/"
                           target="_blank">Markdown</a> formatting is supported</span>
-    {{ form.as_p }}
+    {% for field in form %}
+        <p>
+        {{ form.subject.errors }}
+        {{ field.type }}
+        {% if field.name == 'goals_met' %}
+            {{ field }}
+            <label for="{{ field.id_for_label }}" class="checkable">{{ field.label }}</label>
+        {% else %}
+            {{ field.label_tag }}
+            {{ field }}
+        {% endif %}
+        {{ form.subject }}
+        </p>
+    {% endfor %}
     <input type="submit" value="Save" />
 </form>
 </section>

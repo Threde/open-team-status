@@ -163,6 +163,7 @@ BROKER_URL = 'django://'
 
 env_setting('OPEN_TEAM_STATUS_NAME', default='Open Team Status')
 env_setting('OPEN_TEAM_STATUS_LOGO')
+env_setting('OPEN_TEAM_STATUS_SLACK_WEBHOOK')
 env_setting('OPEN_TEAM_STATUS_REMINDER_HOUR', default=9, type=int)
 env_setting('OPEN_TEAM_STATUS_REMINDER_MINUTE', default=0, type=int)
 env_setting('OPEN_TEAM_STATUS_REMINDER_DAYS', default='mon,tue,wed,thu,fri')
@@ -172,7 +173,18 @@ env_setting('OPEN_TEAM_STATUS_REMINDER_BODY',
             default='Please checkin today: {url}')
 env_setting('OPEN_TEAM_STATUS_REMINDER_TASK',
             default='checkins.tasks.email_reminder'),
-env_setting('OPEN_TEAM_STATUS_REMINDER_SLACK_WEBHOOK')
+env_setting('OPEN_TEAM_STATUS_REPORT_TASK',
+            default='checkins.tasks.email_report'),
+env_setting('OPEN_TEAM_STATUS_REPORT_SLACK_CHANNEL', default='#general')
+env_setting('OPEN_TEAM_STATUS_REPORT_HOUR', default=12, type=int)
+env_setting('OPEN_TEAM_STATUS_REPORT_MINUTE', default=0, type=int)
+env_setting('OPEN_TEAM_STATUS_REPORT_DAYS', default='mon,tue,wed,thu,fri')
+env_setting('OPEN_TEAM_STATUS_REPORT_SUBJECT', default='Team Status Update')
+env_setting('OPEN_TEAM_STATUS_REPORT_BODY', default="""{url}
+{checked_in}/{total} users checked in today.
+{goals_met}/{total} users met their goals yesterday.
+{blocked}/{total} users are blocked today.
+""")
 env_setting('OPEN_TEAM_STATUS_PUBLIC', 'false', lambda x: x.lower() == 'true')
 
 
@@ -183,6 +195,14 @@ CELERYBEAT_SCHEDULE = {
             minute=OPEN_TEAM_STATUS_REMINDER_MINUTE,
             day_of_week=OPEN_TEAM_STATUS_REMINDER_DAYS,
             hour=OPEN_TEAM_STATUS_REMINDER_HOUR,
+        ),
+    },
+    'send-report': {
+        'task': OPEN_TEAM_STATUS_REPORT_TASK,
+        'schedule': crontab(
+            minute=OPEN_TEAM_STATUS_REPORT_MINUTE,
+            day_of_week=OPEN_TEAM_STATUS_REPORT_DAYS,
+            hour=OPEN_TEAM_STATUS_REPORT_HOUR,
         ),
     },
 }

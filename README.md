@@ -46,6 +46,8 @@ possible settings are:
  * `DEFAULT_FROM_EMAIL`
  * `OPEN_TEAM_STATUS_NAME` - name to display in nav
  * `OPEN_TEAM_STATUS_LOGO` - a logo to display in the nav
+ * `OPEN_TEAM_STATUS_PUBLIC` - if true, the checkin summary page visible with
+   out logging in
  * `OPEN_TEAM_STATUS_REMINDER_HOUR` - hour of the day to send reminders,
     default: 9
  * `OPEN_TEAM_STATUS_REMINDER_MINUTE` - minute of the hour to send reminders,
@@ -56,10 +58,20 @@ possible settings are:
  * `OPEN_TEAM_STATUS_REMINDER_BODY`
  * `OPEN_TEAM_STATUS_REMINDER_TASK` - celery task to user for to send
    reminders with, default: `checkins.tasks.email_reminder`
- * `OPEN_TEAM_STATUS_PUBLIC` - if true, the checkin summary page visible with
-   out logging in
- * `OPEN_TEAM_STATUS_REMINDER_SLACK_WEBHOOK` - slack webhook to use when using
-   slack for reminders
+ * `OPEN_TEAM_STATUS_REPORT_HOUR` - hour of the day to send reports,
+    default: 12
+ * `OPEN_TEAM_STATUS_REPORT_MINUTE` - minute of the hour to send reports,
+    default: 0
+ * `OPEN_TEAM_STATUS_REPORT_DAYS` - days of the week to send reports,
+    default: mon,tue,wed,thu,fri
+ * `OPEN_TEAM_STATUS_REPORT_SUBJECT`
+ * `OPEN_TEAM_STATUS_REPORT_BODY`
+ * `OPEN_TEAM_STATUS_REPORT_TASK` - celery task to user for to send
+   reminders with, default: `checkins.tasks.email_report`
+ * `OPEN_TEAM_STATUS_SLACK_WEBHOOK` - slack webhook to use when using
+   slack for reminders and reports
+ * `OPEN_TEAM_STATUS_REPORT_SLACK_CHANNEL` - slack channel to use when using
+   slack for reports, default: `#general`
 
 
 ## Pluggable reminder backend!
@@ -67,11 +79,15 @@ OpenTeamStatus features a pluggable system for sending reminders. It currently
 supports email and can be configured using the standard Django email config
 variables.
 
-The backend is configured via the OPEN_TEAM_STATUS_REMINDER_TASK environment
-variable. The available backends are:
+The backend is configured via the `OPEN_TEAM_STATUS_REMINDER_TASK`
+and `OPEN_TEAM_STATUS_REPORT_TASK` environment variables.
+variable. The available reminder backends are:
  * Email - `checkins.tasks.email_reminder`
  * Slack - `checkins.tasks.slack_reminder` - **NOTE**: slack usernames must
    must match OpenTeamStatus usernames.
+The available Report backends are:
+ * Email - `checkins.tasks.email_report`
+ * Slack - `checkins.tasks.slack_report`
 
 
 ## Docker!

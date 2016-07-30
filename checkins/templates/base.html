@@ -1,9 +1,14 @@
 {% load staticfiles %}
+<!DOCTYPE html>>
+<html>
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static "picnic.min.css" %}">
 <link rel="stylesheet" href="{% static "style.css" %}">
 <link rel="stylesheet" href="{% static "font-awesome-4.6.3/css/font-awesome.min.css" %}">
+</head>
 
+<body>
 <nav>
   <a href="{% url "home" %}" class="brand">
     {% if team_logo %}<img src="{{ team_logo }}">{% endif %}
@@ -52,3 +57,5 @@
        <a href="http://robohash.org" target="_blank">Robohash.org</a>
   </div>
 </footer>
+</body>
+</html>

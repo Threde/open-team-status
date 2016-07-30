@@ -77,13 +77,13 @@ section {
     text-align: center;
 }
 .checked-in {
-    color: blue;
+    color: #0074d9;
 }
 .met-goals {
-    color: green;
+    color: #2ecc40;
 }
 .blocked {
-    color: red;
+    color: #ff4136;
 }
 
 .help {

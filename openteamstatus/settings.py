@@ -145,7 +145,7 @@ LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1
 
 env_setting('EMAIL_HOST')
-env_setting('EMAIL_PORT')
+env_setting('EMAIL_PORT', default=25, type=int)
 env_setting('EMAIL_HOST_PASSWORD')
 env_setting('EMAIL_HOST_USER')
 env_setting('EMAIL_SUBJECT_PREFIX', default='[OpenTeamStatus]')

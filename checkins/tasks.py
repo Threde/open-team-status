@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from magiclink.models import MagicToken
 
 @shared_task
-def send_reminder():
+def email_reminder():
     for user in get_user_model().objects.all():
         if not user.email:
             continue

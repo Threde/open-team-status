@@ -52,9 +52,22 @@ possible settings are:
     default: mon,tue,wed,thu,fri
  * `OPEN_TEAM_STATUS_REMINDER_SUBJECT`
  * `OPEN_TEAM_STATUS_REMINDER_BODY`
+ * `OPEN_TEAM_STATUS_REMINDER_TASK` - celery task to user for to send
+   reminders with, default: `checkins.tasks.email_reminder`
  * `OPEN_TEAM_STATUS_PUBLIC` - if true, the checkin summary page visible with
    out logging in
 
+
+## Pluggable reminder backend!
+OpenTeamStatus features a pluggable system for sending reminders. It currently
+supports email and can be configured using the standard Django email config
+variables.
+
+The backend is configured via the OPEN_TEAM_STATUS_REMINDER_TASK environment
+variable. The available backends are:
+ * Email - `checkins.tasks.email_reminder`
+Coming soon:
+ * Slack - `checkins.tasks.slack_reminder`
 
 
 ## Docker!

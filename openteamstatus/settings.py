@@ -169,12 +169,14 @@ env_setting('OPEN_TEAM_STATUS_REMINDER_SUBJECT',
             default='Status Checkin Reminder')
 env_setting('OPEN_TEAM_STATUS_REMINDER_BODY',
             default='Please checkin today: {url}')
+env_setting('OPEN_TEAM_STATUS_REMINDER_TASK',
+            default='checkins.tasks.email_reminder'),
 env_setting('OPEN_TEAM_STATUS_PUBLIC', 'false', lambda x: x.lower() == 'true')
 
 
 CELERYBEAT_SCHEDULE = {
     'send-reminder': {
-        'task': 'checklist.tasks.send_reminder',
+        'task': OPEN_TEAM_STATUS_REMINDER_TASK,
         'schedule': crontab(
             minute=0,
             day_of_week=OPEN_TEAM_STATUS_REMINDER_DAYS,

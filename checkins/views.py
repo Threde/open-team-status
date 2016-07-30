@@ -46,10 +46,6 @@ class CheckinDayView(ListView):
         context['missing_checkins'] = [{'user': u}
                                        for u in users_missing_checkins]
 
-        context['checked_in'] = context['object_list'].count()
-        context['goals_met'] = context['object_list'].filter(goals_met=True).count()
-        context['blocked'] = context['object_list'].exclude(blockers='').count()
-
         return context
 
 

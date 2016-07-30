@@ -11,17 +11,17 @@
     <hr style="clear:both">
     <div class="flex three">
         <h1 class="count checked-in">
-            {{ checked_in}} / {{ num_users }}
+            {{ object_list.count }} / {{ num_users }}
             <br>
             Checked In
         </h1>
         <h1 class="count met-goals">
-            {{ goals_met}} / {{ num_users }}
+            {{ object_list.goals_met.count }} / {{ num_users }}
             <br>
             Met Goals
         </h1>
         <h1 class="count blocked">
-            {{ blocked }} / {{ num_users }}
+            {{ object_list.blocked.count }} / {{ num_users }}
             <br>
             Are Blocked
         </h1>

@@ -8,3 +8,6 @@ admin.site.unregister(WorkerState)
 admin.site.unregister(IntervalSchedule)
 admin.site.unregister(CrontabSchedule)
 admin.site.unregister(PeriodicTask)
+
+# Re-title admin
+admin.site.site_header = 'OpenTeamStatus administration'

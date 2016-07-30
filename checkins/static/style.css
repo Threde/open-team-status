@@ -12,18 +12,17 @@ footer {
     position: relative;
     height: 150px;
     clear:both;
-    line-height: 150px;
 
     width: 100%;
     max-width: 960px;
     margin: -150px auto 0;
     font-size: .75em;
 } 
+footer p {
+    margin-top: 0;
+}
 footer a {
     color: #333;
-}
-footer .bleep-bloop {
-    float: right;
 }
 footer a img {
     vertical-align: middle;

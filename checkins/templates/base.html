@@ -1,5 +1,5 @@
 {% load staticfiles %}
-<!DOCTYPE html>>
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,15 +47,19 @@
 </div>
 
 <footer>
-  <a href="http://threde.com/" target="_blank">
+  <p>
     Built by
-    <img src="{% static "threde-logo.png" %}">
-  </a>
-
-  <div class="bleep-bloop">
-       Robots lovingly delivered by
-       <a href="http://robohash.org" target="_blank">Robohash.org</a>
-  </div>
+    <a href="http://threde.com/" target="_blank">
+      <img src="{% static "threde-logo.png" %}">
+    </a>
+  </p>
+  <p>
+    <a href="https://gitlab.com/threde/open-team-status">Source</a> licensed
+    under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html"
+            target="_blank">GPLv3</a>.
+    <br>
+    Robots by <a href="http://robohash.org" target="_blank">Robohash.org</a>
+  </p>
 </footer>
 </body>
 </html>

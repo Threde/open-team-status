@@ -16,6 +16,9 @@ import os
 from django.core.urlresolvers import reverse_lazy
 from celery.schedules import crontab
 
+def env_setting(var, default=None, type=lambda x: x):
+    globals()[var] = type(os.environ.get(var, default))
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,13 +27,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    'SECRET_KEY', '+iwwd*@_y@2=0#6_&4e7)#hvdc)7mw)%g(xbk62zg-b%h0$dc6')
+env_setting('SECRET_KEY', '+iwwd*@_y@2=0#6_&4e7)#hvdc)7mw)%g(xbk62zg-b%h0$dc6')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'true').lower() == 'true'
+env_setting('DEBUG', default=True, type=bool)
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(':')
+env_setting('ALLOWED_HOSTS', default='', type=lambda x: x.split(':'))
 
 
 # Application definition
@@ -145,13 +147,10 @@ SITE_ID = 1
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 BROKER_URL = 'django://'
 
-OPEN_TEAM_STATUS_NAME = os.environ.get('OPEN_TEAM_STATUS_NAME',
-                                       'Open Team Status')
-OPEN_TEAM_STATUS_LOGO = os.environ.get('OPEN_TEAM_STATUS_LOGO')
-OPEN_TEAM_STATUS_REMINDER_HOUR = os.environ.get(
-    'OPEN_TEAM_STATUS_REMINDER_HOUR', 9)
-OPEN_TEAM_STATUS_REMINDER_DAYS = os.environ.get(
-    'OPEN_TEAM_STATUS_REMINDER_DAYS', 'mon,tue,wed,thu,fri')
+env_setting('OPEN_TEAM_STATUS_NAME', default='Open Team Status')
+env_setting('OPEN_TEAM_STATUS_LOGO')
+env_setting('OPEN_TEAM_STATUS_REMINDER_HOUR', default=9, type=int)
+env_setting('OPEN_TEAM_STATUS_REMINDER_DAYS', default='mon,tue,wed,thu,fri')
 
 
 CELERYBEAT_SCHEDULE = {}

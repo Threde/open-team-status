@@ -1,5 +1,5 @@
 {% load md2 %}
-<div class="checkin flex three {% if not object.id %}missing{% endif %}">
+<div class="checkin flex three-500 one {% if not object.id %}missing{% endif %}">
     <div class="person">
         <div class="avatar-wrap">
         <img src="https://robohash.org/{% firstof object.user.email object.user.username %}?gravatar=yes&size=64x64"

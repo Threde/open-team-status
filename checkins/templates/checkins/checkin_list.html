@@ -29,7 +29,10 @@
     <hr>
     <div class="flex two checkin-list">
         {% for object in object_list %}
-        {% include "checkins/checkin.html" %}
+            {% include "checkins/checkin.html" %}
+        {% endfor %}
+        {% for object in missing_checkins %}
+            {% include "checkins/checkin.html" %}
         {% endfor %}
     </div>
 </section>

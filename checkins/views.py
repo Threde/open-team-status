@@ -33,7 +33,12 @@ class CheckinDayView(ListView):
         context['prev'] = (self._get_day() +
                            datetime.timedelta(days=-1)).strftime('%Y-%m-%d')
 
-        context['num_users'] = get_user_model().objects.count()
+        users = get_user_model().objects.all()
+        context['num_users'] = users.count()
+        users_missing_checkins = users.exclude(
+            id__in=context['object_list'].values_list('user_id', flat=True))
+        context['missing_checkins'] = [{'user': u}
+                                       for u in users_missing_checkins]
 
         context['checked_in'] = context['object_list'].count()
         context['goals_met'] = context['object_list'].filter(goals_met=True).count()

@@ -90,3 +90,8 @@ section {
 .brand img {
     height: 40px;
 }
+
+.missing {
+    filter: saturate(0%) opacity(50%);
+    -webkit-filter: saturate(0%) opacity(50%);
+}

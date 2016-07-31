@@ -65,3 +65,20 @@ def email_report():
                   settings.DEFAULT_FROM_EMAIL,
                   [user.email],
                   fail_silently=False)
+
+@shared_task
+def slack_checkin(checkin_id):
+    checkin = Checkin.objects.get(id=checkin_id)
+    link = ('https://' + Site.objects.get_current().domain +
+            checkin.get_absolute_url())
+    requests.post(settings.OPEN_TEAM_STATUS_SLACK_WEBHOOK, json={
+        'channel': settings.OPEN_TEAM_STATUS_CHECKIN_SLACK_CHANNEL,
+        'text': settings.OPEN_TEAM_STATUS_CHECKIN_BODY.format(
+            url=link,
+            user='@' + checkin.user.username,
+            goals_met=checkin.goals_met,
+            yesterday=checkin.yesterday,
+            today=checkin.today,
+            blockers=checkin.blockers,
+        )
+    })

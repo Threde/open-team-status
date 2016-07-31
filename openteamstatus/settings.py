@@ -174,10 +174,9 @@ env_setting('OPEN_TEAM_STATUS_REMINDER_SUBJECT',
             default='Status Checkin Reminder')
 env_setting('OPEN_TEAM_STATUS_REMINDER_BODY',
             default='Please checkin today: {url}')
-env_setting('OPEN_TEAM_STATUS_REMINDER_TASK',
-            default='checkins.tasks.email_reminder'),
-env_setting('OPEN_TEAM_STATUS_REPORT_TASK',
-            default='checkins.tasks.email_report'),
+env_setting('OPEN_TEAM_STATUS_REMINDER_TASK'),
+env_setting('OPEN_TEAM_STATUS_REPORT_TASK'),
+env_setting('OPEN_TEAM_STATUS_CHECKIN_TASK'),
 env_setting('OPEN_TEAM_STATUS_REPORT_SLACK_CHANNEL', default='#general')
 env_setting('OPEN_TEAM_STATUS_REPORT_HOUR', default=12, type=int)
 env_setting('OPEN_TEAM_STATUS_REPORT_MINUTE', default=0, type=int)
@@ -188,28 +187,39 @@ env_setting('OPEN_TEAM_STATUS_REPORT_BODY', default="""{url}
 {goals_met}/{total} users met their goals yesterday.
 {blocked}/{total} users are blocked today.
 """)
+env_setting('OPEN_TEAM_STATUS_CHECKIN_SLACK_CHANNEL', default='#general')
+env_setting('OPEN_TEAM_STATUS_CHECKIN_BODY', default="""{url}
+{user} checked in!
+Met Goals Yesterday: {goals_met}
+Yesterday:
+{yesterday}
+Today:
+{today}
+Blockers:
+{blockers}
+""")
 env_setting('OPEN_TEAM_STATUS_PUBLIC', 'false', lambda x: x.lower() == 'true')
 
 
-CELERYBEAT_SCHEDULE = {
-    'send-reminder': {
+CELERYBEAT_SCHEDULE = {}
+if OPEN_TEAM_STATUS_REMINDER_TASK:
+    CELERYBEAT_SCHEDULE['send-reminder'] = {
         'task': OPEN_TEAM_STATUS_REMINDER_TASK,
         'schedule': crontab(
             minute=OPEN_TEAM_STATUS_REMINDER_MINUTE,
             day_of_week=OPEN_TEAM_STATUS_REMINDER_DAYS,
             hour=OPEN_TEAM_STATUS_REMINDER_HOUR,
         ),
-    },
-    'send-report': {
+    }
+if OPEN_TEAM_STATUS_REPORT_TASK:
+    CELERYBEAT_SCHEDULE['send-report'] = {
         'task': OPEN_TEAM_STATUS_REPORT_TASK,
         'schedule': crontab(
             minute=OPEN_TEAM_STATUS_REPORT_MINUTE,
             day_of_week=OPEN_TEAM_STATUS_REPORT_DAYS,
             hour=OPEN_TEAM_STATUS_REPORT_HOUR,
         ),
-    },
-}
-
+    }
 if 'DYNO' in os.environ:
     CELERYBEAT_SCHEDULE['heroku-keep-alive'] = {
         'task': 'core.tasks.heroku_keepalive',

@@ -1,3 +1,4 @@
+from celery.execute import send_task
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -81,6 +82,10 @@ class CheckinCreateView(CreateView):
         self.object, created = Checkin.objects.update_or_create(
             user=self.request.user, date=timezone.now().date(),
             defaults=form.cleaned_data)
+
+        if created:
+            send_task(settings.OPEN_TEAM_STATUS_CHECKIN_TASK,
+                      (self.object.id,))
 
         return HttpResponseRedirect(reverse(
             'checkin-day', kwargs={'day': 'today'}))

@@ -1,6 +1,7 @@
 from celery import shared_task
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 import requests

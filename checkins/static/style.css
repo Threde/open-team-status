@@ -113,3 +113,7 @@ section {
 textarea[disabled] {
     color: grey;
 }
+
+.checkin .emoji {
+    height: 20px;
+}

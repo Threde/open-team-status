@@ -1,4 +1,5 @@
 {% load md2 %}
+{% load emoji_tags %}
 <div class="checkin flex three-500 one {% if not object.id %}missing{% endif %}">
     <div class="person">
         <div class="avatar-wrap">
@@ -11,14 +12,14 @@
     </div>
     <div class="two-third">
         <h4 {% if object.goals_met %}class="met-goals"{% endif %}>Yesterday:</h4>
-        {{ object.yesterday|markdown:"safe" }}
+        {{ object.yesterday|markdown:"safe"|emoji_replace }}
 
         <h4 class="checked-in">Today:</h4>
-        {{ object.today|markdown:"safe" }}
+        {{ object.today|markdown:"safe"|emoji_replace }}
 
         {% if object.blockers %}
         <h4 class="blocked">Blockers:</h4>
-        {{ object.blockers|markdown:"safe" }}
+        {{ object.blockers|markdown:"safe"|emoji_replace }}
         {% endif %}
     </div>
 </div>

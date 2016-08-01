@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_markdown2',
     'djcelery',
     'kombu.transport.django',
+    'emoji',
 
     'core',
     'checkins',

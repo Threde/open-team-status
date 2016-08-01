@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
 from django.core.urlresolvers import reverse_lazy
@@ -25,6 +25,8 @@ import magiclink.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^emoji/', include('emoji.urls')),
 
     url(r'^$', RedirectView.as_view(url=reverse_lazy(
         'checkin-day', kwargs={'day': 'today'})),

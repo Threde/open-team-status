@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block "body" %}
 <section>
@@ -22,10 +23,15 @@
             {% if field.name == 'yesterday' %}
                 <label>Yesterday's goals</label>
                 <textarea rows="10" disabled>{{ yesterday }}</textarea>
+            {% elif field.name == 'today' %}
+                <label>Preview</label>
+                <span id="preview"></span>
             {% endif %}
         </p>
     {% endfor %}
     <input type="submit" value="Save" />
 </form>
 </section>
+<script src="{% static "markdown.js" %}"></script>
+<script src="{% static "preview.js" %}"></script>
 {% endblock "body" %}

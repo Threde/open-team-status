@@ -17,9 +17,16 @@ footer {
     max-width: 960px;
     margin: -150px auto 0;
     font-size: .75em;
+    padding-top: 25px;
 } 
 footer p {
     margin-top: 0;
+}
+footer p:first-child {
+    float: left;
+}
+footer p:last-child {
+    float: right;
 }
 footer a {
     color: #333;

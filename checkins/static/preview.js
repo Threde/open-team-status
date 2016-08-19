@@ -1,6 +1,6 @@
 function Editor(input, preview) {
     this.update = function () {
-        preview.innerHTML = markdown.toHTML(input.value);
+        preview.innerHTML = Emoji.replace(markdown.toHTML(input.value));
     };
     input.editor = this;
     input.onChange = this.update;
@@ -10,3 +10,6 @@ function Editor(input, preview) {
 new Editor(
         document.getElementById('id_today'),
         document.getElementById('preview'));
+new Editor(
+        document.getElementById('id_blockers'),
+        document.getElementById('blockers-preview'));

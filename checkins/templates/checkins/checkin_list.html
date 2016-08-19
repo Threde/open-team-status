@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
 {% block "body" %}
 <section>
     <h3 class="day">
@@ -15,22 +17,16 @@
         {% endif %}
     </span>
     <hr style="clear:both">
-    <div class="flex three">
-        <h1 class="count checked-in">
-            {{ object_list.count }} / {{ num_users }}
-            <br>
-            Checked In
-        </h1>
-        <h1 class="count met-goals">
-            {{ object_list.goals_met.count }} / {{ num_users }}
-            <br>
-            Met Goals
-        </h1>
-        <h1 class="count blocked">
-            {{ object_list.blocked.count }} / {{ num_users }}
-            <br>
-            Are Blocked
-        </h1>
+    <div class="flex three-800 one">
+        <div>
+        <div id="checked-in-gauge" class="guage"></div>
+        </div>
+        <div>
+        <div id="met-goals-gauge" class="guage"></div>
+        </div>
+        <div>
+        <div id="blocked-gauge" class="guage"></div>
+        </div>
     </div>
     <hr>
     <div class="flex one two-500 checkin-list">
@@ -42,4 +38,32 @@
         {% endfor %}
     </div>
 </section>
+<script src="{% static "justgage.js" %}"></script>
+<script src="{% static "raphael-2.1.4.min.js" %}"></script>
+<script>
+  new JustGage({
+      id: "checked-in-gauge",
+      value: {{ object_list.count }},
+      min: 0,
+      max: {{ num_users }},
+      title: "Checked In",
+      levelColors: ["#0074d9"]
+    });
+  new JustGage({
+      id: "met-goals-gauge",
+      value: {{ object_list.goals_met.count }},
+      min: 0,
+      max: {{ num_users }},
+      title: "Met Goals",
+      levelColors: ["#2ecc40"]
+    });
+  new JustGage({
+      id: "blocked-gauge",
+      value: {{ object_list.blocked.count }},
+      min: 0,
+      max: {{ num_users }},
+      title: "Blocked",
+      levelColors: ["#ff4136"]
+    });
+</script>
 {% endblock "body" %}

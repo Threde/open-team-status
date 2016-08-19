@@ -73,8 +73,10 @@ section {
     padding-top: 20px;
 }
 
-.count {
-    text-align: center;
+.guage {
+    height: 200px;
+    width: 300px;
+    margin: auto;
 }
 .checked-in {
     color: #0074d9;

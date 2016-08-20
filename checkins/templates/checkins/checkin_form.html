@@ -36,9 +36,9 @@
     <input type="submit" value="Save" />
 </form>
 </section>
-<script src="{% static "jquery-1.12.4.min.js" %}"></script>
+<script src="{% static "lib/jquery-1.12.4.min.js" %}"></script>
 <script src="{% static "emoji/js/emoji.js" %}"></script>
 <script>Emoji.setDataUrl('{% url 'list.json' %}').load();</script>
-<script src="{% static "markdown.js" %}"></script>
+<script src="{% static "lib/markdown.js" %}"></script>
 <script src="{% static "preview.js" %}"></script>
 {% endblock "body" %}

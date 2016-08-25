@@ -1,7 +1,7 @@
 # OpenTeamStatus - an opensource StatusHero clone
 OpenTeamStatus is built by [Threde](http://threde.com) for small teams like our
-own. It was built out of a desire for a free and open source (thus guaranteed to
-be free forever) clone of [StatusHero](http://statushero.com).
+own. It was built out of a desire for a free, open source, easy to host(for
+free) and self-hostable clone of [StatusHero](http://statushero.com).
 
 **NOTE: This is still BETA quality and under development, but we are using it
 ourselves :smiley:**

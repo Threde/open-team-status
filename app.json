@@ -17,6 +17,75 @@
     "TZ": {
         "value": "UTC"
     },
+    "OPEN_TEAM_STATUS_NAME": {
+        "description": "Your team's name",
+        "required": false
+    },
+    "OPEN_TEAM_STATUS_LOGO": {
+        "description": "URL to your team's logo",
+        "required": false
+    },
+    "OPEN_TEAM_STATUS_PUBLIC": {
+        "description": "If true, the checkin summary page visible with out logging in",
+        "required": false,
+        "value": "false"
+    },
+    "OPEN_TEAM_STATUS_REMINDER_HOUR": {
+        "description": "hour of the day to send reminders",
+        "required": false,
+        "value": "9"
+    },
+    "OPEN_TEAM_STATUS_REMINDER_TASK": {
+        "description": "celery task to user for to send reminders with: 'checkins.tasks.slack_reminder' or 'checkins.tasks.email_reminder'",
+        "required": false
+    },
+    "OPEN_TEAM_STATUS_REMINDER_MINUTE": {
+        "description": "minute of the hour to send reminders",
+        "required": false,
+        "value": "0"
+    },
+    "OPEN_TEAM_STATUS_REMINDER_DAYS": {
+        "description": "days of the week to send reminders",
+        "required": false,
+        "value": "mon,tue,wed,thu,fri"
+    },
+    "OPEN_TEAM_STATUS_REPORT_TASK": {
+        "description": "celery task to user for to send reminders with: 'checkins.tasks.slack_report' or 'checkins.tasks.email_report'",
+        "required": false
+    },
+    "OPEN_TEAM_STATUS_REPORT_HOUR": {
+        "description": "hour of the day to send reports",
+        "required": false,
+        "value": "12"
+    },
+    "OPEN_TEAM_STATUS_REPORT_MINUTE": {
+        "description": "minute of the hour to send reports",
+        "required": false,
+        "value": "0"
+    },
+    "OPEN_TEAM_STATUS_REPORT_DAYS": {
+        "description": "days of the week to send reports",
+        "required": false,
+        "value": "mon,tue,wed,thu,fri"
+    },
+    "OPEN_TEAM_STATUS_CHECKIN_TASK": {
+        "description": "celery task to user for to send checkins with, only available for slack: 'checkins.tasks.slack_checkin'",
+        "required": false
+    },
+    "OPEN_TEAM_STATUS_SLACK_WEBHOOK": {
+        "description": "slack webhook to use when using slack for reminders and reports",
+        "required": false
+    },
+    "OPEN_TEAM_STATUS_REPORT_SLACK_CHANNEL": {
+        "description": "slack channel to use when using slack for reports",
+        "required": false,
+        "value": "#general"
+    },
+    "OPEN_TEAM_STATUS_CHECKIN_SLACK_CHANNEL": {
+        "description": "slack channel to use when using slack for delivering checkins",
+        "required": false,
+        "value": "#general"
+    },
     "EMAIL_HOST": { "required": false },
     "EMAIL_PORT": { "required": false },
     "EMAIL_HOST_PASSWORD": { "required": false },
@@ -27,73 +96,6 @@
     "EMAIL_SSL_CERTFILE": { "required": false },
     "EMAIL_SSL_KEYFILE": { "required": false },
     "EMAIL_TIMEOUT": { "required": false },
-    "DEFAULT_FROM_EMAIL": { "required": false },
-    "OPEN_TEAM_STATUS_NAME": {
-        "description": "name to display in nav",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_LOGO": {
-        "description": "a logo to display in the nav",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_PUBLIC": {
-        "description": "if true, the checkin summary page visible with out logging in",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REMINDER_HOUR": {
-        "description": "hour of the day to send reminders, default: 9",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REMINDER_MINUTE": {
-        "description": "minute of the hour to send reminders, default: 0",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REMINDER_DAYS": {
-        "description": "days of the week to send reminders, default: mon,tue,wed,thu,fri",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REMINDER_SUBJECT": { "required": false },
-    "OPEN_TEAM_STATUS_REMINDER_BODY": { "required": false },
-    "OPEN_TEAM_STATUS_REMINDER_TASK": {
-        "description": "celery task to user for to send reminders with",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REPORT_HOUR": {
-        "description": "hour of the day to send reports, default: 12",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REPORT_MINUTE": {
-        "description": "minute of the hour to send reports, default: 0",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REPORT_DAYS": {
-        "description": "days of the week to send reports, default: mon,tue,wed,thu,fri",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REPORT_SUBJECT": { "required": false },
-    "OPEN_TEAM_STATUS_REPORT_BODY": { "required": false },
-    "OPEN_TEAM_STATUS_REPORT_TASK": {
-        "description": "celery task to user for to send reminders with",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_SLACK_WEBHOOK": {
-        "description": "slack webhook to use when using slack for reminders and reports",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_REPORT_SLACK_CHANNEL": {
-        "description": "slack channel to use when using slack for reports, default: `#general`",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_CHECKIN_TASK": {
-        "description": "celery task to user for to send checkins with",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_CHECKIN_SLACK_CHANNEL": {
-        "description": "slack channel to use when using slack for delivering checkins, default: `#general`",
-        "required": false
-    },
-    "OPEN_TEAM_STATUS_CHECKIN_BODY": {
-        "description": "checkin message body"
-    }
+    "DEFAULT_FROM_EMAIL": { "required": false }
   }
 }

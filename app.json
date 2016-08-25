@@ -7,13 +7,14 @@
   "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
     "SECRET_KEY": { "generator": "secret" },
-    "DEBUG": { "value": "false" },
     "ALLOWED_HOSTS": {
         "description": "`:` delimited list of hostnames to listen on"
     },
     "TIME_ZONE": {
         "description": "you'll also want to set `TZ` if deploying to Heroku",
-        "required": true,
+        "value": "UTC"
+    },
+    "TZ": {
         "value": "UTC"
     },
     "EMAIL_HOST": { "required": false },

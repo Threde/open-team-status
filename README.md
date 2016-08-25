@@ -6,16 +6,6 @@ be free forever) clone of [StatusHero](http://statushero.com).
 **NOTE: This is still BETA quality and under development, but we are using it
 ourselves :smiley:**
 
-```
-mkvirtualenv --python=/usr/bin/python3 status
-pip install -r requirements.txt
-./manage.py migrate
-./manage.py createsuperuser
-./manage.py runserver
-```
-
-Avatars made with gravatar/robohash. Because robohash is awesome.
-
 ## Screenshot
 ![screenshot](.screenshot.png)
 
@@ -26,6 +16,44 @@ from a single process. This is launched by the `Procfile` and the Celery worker
 request to itself every 15 minutes to keep the dyno alive forever.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+## Development
+```
+mkvirtualenv --python=/usr/bin/python3 status
+pip install -r requirements.txt
+./manage.py migrate
+./manage.py createsuperuser
+DEBUG=true ./manage.py runserver
+```
+
+## Pluggable reminder backend!
+OpenTeamStatus features a pluggable system for sending reminders. It currently
+supports email and can be configured using the standard Django email config
+variables.
+
+The backend is configured via the `OPEN_TEAM_STATUS_REMINDER_TASK`,
+`OPEN_TEAM_STATUS_REPORT_TASK`, and `OPEN_TEAM_STATUS_CHECKIN_TASK`
+environment variables.
+variable. The available reminder backends are:
+ * Email - `checkins.tasks.email_reminder`
+ * Slack - `checkins.tasks.slack_reminder` - **NOTE**: slack usernames must
+   must match OpenTeamStatus usernames.
+The available Report backends are:
+ * Email - `checkins.tasks.email_report`
+ * Slack - `checkins.tasks.slack_report`
+The available Check backends are:
+ * Slack - `checkins.tasks.slack_checkin`
+
+
+## Stuff used to make this
+ * Avatars made with gravatar/robohash. Because robohash is awesome.
+ * Python3
+ * Django
+ * Celery
+ * markdown
+ * supervisor
+ * more.. (see: [`requirements.txt`](/requirements.txt) and
+[`checkins/static/lib/`](/checkins/static/lib/))
 
 ## Configuration
 Configuration is done through environment variables. Variables not prefixed
@@ -83,32 +111,3 @@ possible settings are:
    slack for delivering checkins, default: `#general`
  * `OPEN_TEAM_STATUS_CHECKIN_BODY`: checkin message body
 
-
-## Pluggable reminder backend!
-OpenTeamStatus features a pluggable system for sending reminders. It currently
-supports email and can be configured using the standard Django email config
-variables.
-
-The backend is configured via the `OPEN_TEAM_STATUS_REMINDER_TASK`,
-`OPEN_TEAM_STATUS_REPORT_TASK`, and `OPEN_TEAM_STATUS_CHECKIN_TASK`
-environment variables.
-variable. The available reminder backends are:
- * Email - `checkins.tasks.email_reminder`
- * Slack - `checkins.tasks.slack_reminder` - **NOTE**: slack usernames must
-   must match OpenTeamStatus usernames.
-The available Report backends are:
- * Email - `checkins.tasks.email_report`
- * Slack - `checkins.tasks.slack_report`
-The available Check backends are:
- * Slack - `checkins.tasks.slack_checkin`
-
-
-## Docker!
-This project's repo automatically builds a docker image and stores it in a
-registry(isn't gitlab neat!)
-```
-docker pull registry.gitlab.com/threde/open-team-status
-docker run -it --rm -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z registry.gitlab.com/threde/open-team-status ./manage.py migrate
-docker run -it --rm -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z registry.gitlab.com/threde/open-team-status ./manage.py createsuperuser
-docker run -it --rm -e ALLOWED_HOSTS=localhost -p 8000:80 -v $PWD/db.sqlite3:/opt/openteamstatus/db.sqlite3:z registry.gitlab.com/threde/open-team-status
-```

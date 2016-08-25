@@ -22,6 +22,8 @@ from a single process. This is launched by the `Procfile` and the Celery worker
 *automatically* detects that it's running on a heroku dyno and makes an HTTP
 request to itself every 15 minutes to keep the dyno alive forever.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Configuration
 Configuration is done through environment variables. Variables not prefixed
 with `OPEN_TEAM_STATUS_` are

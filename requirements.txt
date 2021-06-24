@@ -12,8 +12,7 @@ gunicorn==19.6.0
 hashids==1.1.0
 kombu==3.0.35
 markdown2==2.3.1
-meld3==1.0.2
-psycopg2==2.6.2
+psycopg2-binary==2.8.6
 pytz==2016.6.1
 requests==2.10.0
 sqlparse==0.2.0

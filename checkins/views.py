@@ -41,7 +41,7 @@ class CheckinDayView(ListView):
                            timezone.timedelta(days=-1)).strftime('%Y-%m-%d')
 
         users = get_user_model().objects.filter(
-            date_joined__lte=self._get_day())
+            date_joined__lte=self._get_day() + timezone.timedelta(days=1))
         context['num_users'] = users.count()
         users_missing_checkins = users.exclude(
             id__in=context['object_list'].values_list('user_id', flat=True))

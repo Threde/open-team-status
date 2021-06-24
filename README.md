@@ -15,7 +15,7 @@ from a single process. This is launched by the `Procfile` and the Celery worker
 *automatically* detects that it's running on a heroku dyno and makes an HTTP
 request to itself every 15 minutes to keep the dyno alive forever.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?tempalte=https://github.com/Threde/open-team-status/)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Threde/open-team-status/)
 
 ## Development
 ```
